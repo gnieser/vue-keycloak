@@ -6,7 +6,13 @@ const routes = [
       { path: '', component: () => import('../pages/Index.vue') }
     ]
   },
-
+  {
+    path: '/other',
+    component: () => import('../layouts/OtherLayout.vue'),
+    children: [
+      { path: '', component: () => import('../pages/Other.vue') }
+    ]
+  },
   // Always leave this as last one,
   // but you can also remove it
   {

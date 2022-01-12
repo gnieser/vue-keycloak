@@ -1,9 +1,11 @@
 <template>
   <header>
-    <div class="title">Vue App</div>
+    <div class="title">Other Layout</div>
   </header>
   <div class="page-container">
-    <router-link to="/other" tag="button">Other</router-link>
+    <div>
+      <router-link to="/" tag="button">Index</router-link>
+    </div>
     <router-view />
   </div>
 </template>
@@ -12,7 +14,7 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'MainLayout',
+  name: 'OtherLayout',
 
 })
 </script>

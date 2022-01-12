@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-center column">
-    <h1>Index Page</h1>
+    <h1>Other Page</h1>
     <h2>
       <span style="opacity: .4">Logged as</span> {{ username }}
     </h2>
@@ -12,7 +12,7 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'PageIndex',
+  name: 'PageOther',
   data() {
     return {
       username: this.$keycloak.tokenParsed.name

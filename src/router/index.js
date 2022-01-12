@@ -1,13 +1,9 @@
-import { createRouter, createWebHashHistory, START_LOCATION } from 'vue-router'
+import { createMemoryHistory, createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 import routes from "./routes";
 
-// FIXME using createWebHashHistory leads to 404 after login redirection
-// const createHistory = createWebHistory // Works as expected
-const createHistory = createWebHashHistory
-
-// const createHistory = process.env.SERVER
-//   ? createMemoryHistory
-//   : (process.env.VUE_ROUTER_MODE === 'history' ? createWebHistory : createWebHashHistory)
+const createHistory = process.env.SERVER
+  ? createMemoryHistory
+  : (process.env.VUE_ROUTER_MODE === 'history' ? createWebHistory : createWebHashHistory)
 
 const Router = createRouter({
   scrollBehavior: () => ({ left: 0, top: 0 }),
@@ -15,12 +11,12 @@ const Router = createRouter({
   history: createHistory(process.env.MODE === 'ssr' ? void 0 : process.env.VUE_ROUTER_BASE),
 })
 
-// Console logging of to and from
+// FIXME this is a workaround: when using createWebHashHistory the "to" route needs to be rewritten
 Router.beforeEach((to, from) => {
-  console.log("Router to:", to)
-  console.log("Router from:", from)
-  if (from === START_LOCATION) {
-    // initial navigation
+  if (to.path.includes("&state")) { // We "probably" come from Keycloak...
+    return {
+      "path": to.path.substring(0, to.path.indexOf("&state")) // We remove the query params
+    }
   }
 })
 

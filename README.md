@@ -1,24 +1,17 @@
-# vue-keycloak
+# Configure local Keycloak instance
 
-## Project setup
-```
-npm install
-```
+Download: [https://www.keycloak.org/getting-started]()
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+Create a realm, a user and a client: [https://www.keycloak.org/getting-started/getting-started-zip]()
 
-### Compiles and minifies for production
-```
-npm run build
-```
+Client Root URL should be `http://localhost:4200`
+or configure Valid Redirect URIs (`http://localhost:4200/*`) and Web Origins (`+`)
 
-### Lints and fixes files
-```
-npm run lint
-```
+Also create a user.
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Switch to createWebHashHistory in [src/router/index.js](src/router/index.js) to see the 404 error after login redirection.
+
+More information:
+
+* https://www.keycloak.org/securing-apps/vue
+* https://github.com/keycloak/keycloak-documentation/blob/main/securing_apps/topics/oidc/javascript-adapter.adoc
